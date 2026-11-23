@@ -46,7 +46,7 @@ body {
 
 .banner-logo {
     width: 100%;
-    max-width: 600px; /* حداکثر عرض لوگو */
+    max-width: 600px;
     height: auto;
     object-fit: contain;
 }
@@ -91,6 +91,22 @@ body {
 .download-btn.myket:hover { background-color: #2563eb; }
 .download-btn.disabled { background-color: #f8fafc; color: #94a3b8; cursor: not-allowed; border: 1px dashed #cbd5e1; }
 
+/* بخش حمایت (استایل جدید) */
+.support-section { 
+    padding: 70px 0; 
+    text-align: center; 
+    background-color: #ffffff; 
+    border-bottom: 1px solid #e2e8f0; 
+}
+.support-section h2 { color: #f97316; font-size: 32px; margin-bottom: 20px; font-weight: 800; }
+.support-section p { color: #475569; max-width: 600px; margin: 0 auto 35px; font-size: 17px; line-height: 2; }
+.btn-orange { 
+    background-color: #f97316; color: white; 
+    padding: 15px 45px; border-radius: 12px; text-decoration: none; 
+    font-weight: bold; font-size: 16px; display: inline-block; transition: 0.3s; 
+}
+.btn-orange:hover { background-color: #ea580c; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(249, 115, 22, 0.2); }
+
 /* فوتر */
 footer { background-color: #0f172a; padding: 60px 0 30px; text-align: center; color: #cbd5e1; }
 footer p { margin-bottom: 15px; font-size: 15px; }
@@ -107,4 +123,5 @@ footer .copyright { font-size: 13px; color: #64748b; }
     .hero h2 { font-size: 30px; }
     .hero p { font-size: 16px; }
     .app-grid { grid-template-columns: 1fr; }
+    .support-section h2 { font-size: 26px; }
 }
