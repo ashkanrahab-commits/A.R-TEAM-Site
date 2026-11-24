@@ -2,19 +2,24 @@
 
 body {
     font-family: 'Vazirmatn', sans-serif;
-    background-color: #f8fafc;
+    /* بک‌گراند طوسی روشن که با همه رنگ‌ها هماهنگه */
+    background-color: #f0f4f8; 
     color: #1e293b;
     line-height: 1.8;
+    /* جلوگیری از تداخل هدر با محتوا (به خاطر Fixed شدن هدر) */
+    padding-top: 140px; 
 }
 
 .container { width: 90%; max-width: 1100px; margin: 0 auto; }
 
-/* هدر جدید */
+/* هدر جدید (Fixed شده) */
 .main-header {
     background-color: #ffffff;
-    position: sticky;
+    position: fixed; /* تغییر از sticky به fixed */
     top: 0;
-    z-index: 100;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
@@ -40,13 +45,13 @@ body {
 
 .header-banner {
     text-align: center;
-    padding: 15px 0;
+    padding: 10px 0;
     border-bottom: 1px solid #e2e8f0;
 }
 
 .banner-logo {
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
     height: auto;
     object-fit: contain;
 }
@@ -55,8 +60,9 @@ body {
 .hero {
     padding: 80px 0;
     text-align: center;
-    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    background: #ffffff;
     border-bottom: 1px solid #e2e8f0;
+    margin-top: 20px;
 }
 .hero h2 { font-size: 40px; margin-bottom: 20px; color: #0f172a; font-weight: 900; }
 .hero h2 span { color: #f97316; }
@@ -69,7 +75,7 @@ body {
 .btn-main:hover { background-color: #1e293b; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
 
 /* بخش اپ‌ها */
-.apps-section { padding: 80px 0; background-color: #f1f5f9; }
+.apps-section { padding: 80px 0; background-color: #f0f4f8; }
 .apps-section h2 { text-align: center; font-size: 34px; margin-bottom: 50px; color: #0f172a; font-weight: 800; }
 .app-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
 
@@ -78,12 +84,37 @@ body {
     text-align: center; transition: transform 0.3s, box-shadow 0.3s;
     box-shadow: 0 10px 25px rgba(0,0,0,0.03);
     border: 1px solid #e2e8f0;
+    position: relative; /* برای هاور */
+    overflow: hidden; /* برای هاور */
 }
 .app-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
 .app-icon-img { width: 110px; height: 110px; object-fit: cover; border-radius: 25px; margin-bottom: 25px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
 .app-card h3 { font-size: 24px; color: #0f172a; margin-bottom: 12px; font-weight: 800; }
-.app-card p { font-size: 15px; color: #64748b; margin-bottom: 30px; min-height: 60px; line-height: 1.8; }
-.app-links { display: flex; flex-direction: column; gap: 12px; }
+.app-desc { font-size: 15px; color: #64748b; margin-bottom: 20px; min-height: 60px; line-height: 1.8; }
+
+/* اطلاعات اضافی برای هاور دسکتاپ */
+.app-extra-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    color: #475569;
+    /* مخفی کردن در حالت عادی */
+    max-height: 0;
+    opacity: 0;
+    transition: all 0.4s ease-in-out;
+    margin-bottom: 0;
+    overflow: hidden;
+}
+.app-card:hover .app-extra-info {
+    /* نمایش در حالت هاور */
+    max-height: 120px;
+    opacity: 1;
+    margin-bottom: 20px;
+}
+
+.app-links { display: flex; flex-direction: column; gap: 12px; margin-top: auto; }
 .download-btn { padding: 14px; border-radius: 14px; text-decoration: none; font-weight: bold; transition: 0.3s; font-size: 15px; color: white; display: block; }
 .download-btn.bazaar { background-color: #22c55e; }
 .download-btn.bazaar:hover { background-color: #16a34a; }
@@ -91,7 +122,7 @@ body {
 .download-btn.myket:hover { background-color: #2563eb; }
 .download-btn.disabled { background-color: #f8fafc; color: #94a3b8; cursor: not-allowed; border: 1px dashed #cbd5e1; }
 
-/* بخش حمایت (استایل جدید) */
+/* بخش حمایت */
 .support-section { 
     padding: 70px 0; 
     text-align: center; 
@@ -118,10 +149,15 @@ footer .copyright { font-size: 13px; color: #64748b; }
 
 /* ریسپانسیو */
 @media (max-width: 768px) {
+    body { padding-top: 120px; } /* فاصله برای هدر در موبایل */
     .header-top-bar nav a { margin: 0 10px; font-size: 13px; }
     .banner-logo { max-width: 90%; }
     .hero h2 { font-size: 30px; }
     .hero p { font-size: 16px; }
     .app-grid { grid-template-columns: 1fr; }
     .support-section h2 { font-size: 26px; }
+    
+    /* غیرفعال کردن هاور در موبایل که مشکلی ایجاد نکنه */
+    .app-extra-info { display: none; }
+    .app-desc { margin-bottom: 25px; }
 }
